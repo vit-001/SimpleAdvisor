@@ -16,14 +16,14 @@
 class Analytics
   {
 private:
-   Logger           *logg;
+   //Logger           *logg;
    Grafer           *graf;
 
 public:
-     Analytics(Logger &logger,Grafer &grafer)
+     Analytics()
      {
-      logg=GetPointer(logger);
-      graf=GetPointer(grafer);
+      //logg=new Logger();
+      graf=new Grafer();
      };
      
      ~Analytics(){};
@@ -35,6 +35,8 @@ public:
      void on_de_init()
      {
      }
+     
+
      
   };
   

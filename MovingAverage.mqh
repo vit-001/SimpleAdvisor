@@ -16,10 +16,9 @@
 class MovingAverage:public CandlestickHandler
   {
 private:
-   Logger           *logger;
 public:
 
-                     MovingAverage(CandlestickM1Solver &cs_solver,int dimension,Logger &current_logger);
+                     MovingAverage(CandlestickM1Solver &cs_solver,int dimension);
                     ~MovingAverage();
 
    MovingAverageSimpleArray *median;
@@ -32,22 +31,14 @@ public:
 void MovingAverage::on_candle(datetime time,Candlestick &candle)
   {
    median.add((candle.high()+candle.low())/2);
-   //logger.sp();
-   //logger.out_rate(median.lma(14));
-   //logger.sp();
   }
 //+------------------------------------------------------------------+
 //|                                                                  |
 //+------------------------------------------------------------------+
-MovingAverage::MovingAverage(CandlestickM1Solver &cs,int dimension,Logger &current_logger)
+MovingAverage::MovingAverage(CandlestickM1Solver &cs,int dimension)
   {
-   logger=GetPointer(current_logger);
-
    median=new MovingAverageSimpleArray(dimension);
    cs.add_on_candle_handler(GetPointer(this));
-
-   current_logger.out_string_nl("MovingAverage init");
-
   }
 //+------------------------------------------------------------------+
 //|                                                                  |
